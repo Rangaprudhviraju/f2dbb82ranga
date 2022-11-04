@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    h1= title
+    - var results = [{"Bag_Name": "Nike", "Bag_Company": "Nike", "Bag_Size": 4.0, "Bag_Rating": 4.7},{"Bag_Name": "Kors", "Bag_Company": "Michael", "Bag_Size": 10.0, "Bag_Rating": 4.2},{"Bag_Name": "Adidas", "Bag_Company": "Adidas", "Bag_Size": 11.0, "Bag_Rating": 4.6}]
+    div(class= "container-fluid")
+    div(class = "row")  
+      each item,index in results
+        div(class= "col-sm-2", onclick=`buy(${index})`) #{item["Bag_Name"]}
+        div(class= "col-sm-2", onclick=`buy(${index})`) #{item["Bag_Company"]}
+        div(class= "col-sm-2", onclick=`buy(${index})`) #{item["Bag_Size"]}
+        div(class= "col-sm-2", onclick=`buy(${index})`) #{item["Bag_Rating"]}
+
+
+         script.
+                function buy(index) {
+                    alert("You purchased item " + index)
+                }
+
+    
+                
+        
+                   
+              
+            
