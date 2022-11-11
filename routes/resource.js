@@ -18,3 +18,6 @@ router.get('/Bag/:id', Bag_controller.Bag_detail);
 // GET request for list of all Bag items.
 router.get('/Bag', Bag_controller.Bag_list);
 module.exports = router;
+// GET request for one bag.
+
+router.get('/Bag/:id', Bag_controller.Bag_detail);
