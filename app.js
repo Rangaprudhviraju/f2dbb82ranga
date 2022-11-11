@@ -23,7 +23,7 @@ console.log("Connection to DB succeeded")});
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var BagRouter = require('./routes/Bag');
-var gridbuildRouter = require('./routes/gridbuild');
+//var gridbuildRouter = require('./routes/gridbuild');
 var selectorRouter = require('./routes/selector');
 var resourceRouter = require('./routes/resource');
 
@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/gridbuild', gridbuildRouter);
+//app.use('/gridbuild', gridbuildRouter);
 app.use('/Bag', BagRouter);
 app.use('/selector', selectorRouter);
 app.use('/resource', resourceRouter);
