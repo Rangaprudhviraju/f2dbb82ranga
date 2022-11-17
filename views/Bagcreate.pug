@@ -1,0 +1,38 @@
+extends layout 
+block content 
+  h1= title 
+  form(id='BagForm', action="/resource/Bag", method="POST" ,class='d')
+    div(class='d').form-group
+      img(src='/images/a.JPG' width="100px" height)
+      // img(src='/images/a2.JPG' width="100px" height)
+     
+    div.form-group 
+        label.BagAttr(for='Bag_Name') Bag Name 
+        input#Bag_Name(type='text', name='Bag_Name') 
+    div.form-group 
+        label.BagAttr(for='Bag_Company') Bag Company 
+        input#Bag_Company(type='text', name='Bag_Company') 
+    div.form-group 
+        label.BagAttr(for='Bag_Size') Bag Size 
+        input#Bag_Size(type='number', name='Bag_Size')
+    div.form-group 
+        label.BagAttr(for='Bag_Rating') Bag Rating 
+        input#Bag_Rating(type='number', name='Bag_Rating')     
+    input(type="submit") 
+  script. 
+    document.forms['BagForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    });

@@ -1,0 +1,43 @@
+extends layout 
+block content 
+  h1= title 
+  - let Bagid = toShow._id 
+  - let Bag_Name = toShow.Bag_Name
+  - let Bag_Company = toShow.Bag_Company
+  - let Bag_Size = toShow.Bag_Size
+  - let Bag_Rating = toShow.Bag_Rating 
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{Bagid} 
+  - let actionid = "/resource/Bag/" + Bagid 
+  form(id='BagForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.BagAttr(for='Bag_Name') Bag Name 
+        input#Bag_Name(type='text', name='Bag_Name', value= Bag_Name ) 
+    div.form-group 
+        label.BagAttr(for='Bag_Company') Bag Company 
+        input#Bag_Company(type='text', name='Bag_Company', value= Bag_Company ) 
+    div.form-group 
+        label.BagAttr(for='Bag_Size') Bag Size 
+        input#Bag_Size(type='number', name='Bag_Size', value= Bag_Size )
+    div.form-group 
+        label.BagAttr(for='Bag_Rating') Bag Rating 
+        input#Bag_Rating(type='number', name='Bag_Rating', value= Bag_Rating)      
+    input(type="submit") 
+  script. 
+    document.forms['BagForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    });

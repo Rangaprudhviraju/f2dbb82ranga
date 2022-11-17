@@ -1,0 +1,25 @@
+extends layout 
+ 
+block content 
+  h1= n
+  - let Bagid = toShow._id 
+  - let Bag_name = toShow.Bag_name
+  - let Bag_Company = toShow.Bag_Company
+  - let Bag_Size = toShow.Bag_Size
+  - let Bag_Rating = toShow.Bag_Rating
+  div 
+    div.row 
+      div(class='BagAttr mr-3') Bag ID is: 
+      div #{Bagid} 
+    div.row 
+      div(class='BagAttr mr-3') Bag Name is: 
+      div #{Bag_Name} 
+    div.row 
+      div(class='BagAttr mr-3') Bag Company is: 
+      div #{Bag_Company} 
+    div.row 
+      div(class='BagAttr mr-3') Bag Size is: 
+      div #{Bag_Size}
+    div.row 
+      div(class='BagAttr mr-3') Bag Rating is: 
+      div #{Bag_Rating}
