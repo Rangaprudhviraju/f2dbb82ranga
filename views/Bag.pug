@@ -1,25 +1,21 @@
 extends layout
 
 block content
-    h1= title
-    - var results = [{"Bag_Name": "Nike", "Bag_Company": "Nike", "Bag_Size": 4.0, "Bag_Rating": 4.7},{"Bag_Name": "Kors", "Bag_Company": "Michael", "Bag_Size": 10.0, "Bag_Rating": 4.2},{"Bag_Name": "Adidas", "Bag_Company": "Adidas", "Bag_Size": 11.0, "Bag_Rating": 4.6}]
-    div(class= "container-fluid")
-    div(class = "row")  
-      each item,index in results
-        div(class= "col-sm-2", onclick=`buy(${index})`) #{item["Bag_Name"]}
-        div(class= "col-sm-2", onclick=`buy(${index})`) #{item["Bag_Company"]}
-        div(class= "col-sm-2", onclick=`buy(${index})`) #{item["Bag_Size"]}
-        div(class= "col-sm-2", onclick=`buy(${index})`) #{item["Bag_Rating"]}
+  h1= title
+  - let result=results
+  div(class="container-fluid")
+     div(class='row m-1')
+        each item,index in result
+            -let destination = `dispatch(\"/Bag/update?id=${item._id}\")`
+            div.col-sm-2(onclick=`buy(${index})`) Bag Name: #{item["Bag_Name"]} <br> Bag Company: #{item["Bag_Company"]} <br> Bag Size: #{item["Bag_Size"]} <br> Bag Rating: #{item["Bag_Rating"]}
+                button.btn(class="btn-primary ml-1", onclick = destination) Update
 
+  script.
+      function buy(index){
+         alert("you purchased item "+(index+1))
+      }
 
-         script.
-                function buy(index) {
-                    alert("You purchased item " + index)
-                }
-
-    
-                
-        
-                   
-              
-            
+  script.
+      function dispatch(path){
+      window.location.href=path
+      }              
