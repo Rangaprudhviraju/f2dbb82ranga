@@ -35,4 +35,4 @@ router.get('/update', secured, bag_controllers.Bag_update_Page);
 
 
 // GET delete costume page */ 
-router.get('/delete', secured, bag_controllers.Bag_delete_Page); 
+router.get('/delete', secured, bag_controllers.Bag_delete_Page);
