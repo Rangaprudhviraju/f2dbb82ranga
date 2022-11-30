@@ -10,6 +10,16 @@ var express = require('express');
 const bag_controllers= require('../controllers/bag');
 var router = express.Router();
 
+// A little function to check if we have an authorized user and continue on
+// redirect to login.
+const secured = (req, res, next) => {
+ if (req.user){
+ return next();
+ }
+ req.session.returnTo = req.originalUrl;
+ res.redirect("/login");
+ }
+
 /* GET bags */
 router.get('/', bag_controllers.Bag_view_all_Page);
 module.exports = router;
@@ -18,11 +28,11 @@ module.exports = router;
 router.get('/detail', bag_controllers.Bag_view_one_Page);
 
  /* GET create costume page */ 
-router.get('/create', bag_controllers.Bag_create_Page);
+router.get('/create', secured, bag_controllers.Bag_create_Page);
 
 /* GET create update page */ 
-router.get('/update', bag_controllers.Bag_update_Page); 
+router.get('/update', secured, bag_controllers.Bag_update_Page); 
 
 
 // GET delete costume page */ 
-router.get('/delete', bag_controllers.Bag_delete_Page); 
+router.get('/delete', secured, bag_controllers.Bag_delete_Page); 
